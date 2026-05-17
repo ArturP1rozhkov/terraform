@@ -15,7 +15,6 @@ provider "docker" {
 
 variable "docker_host" {
   type        = string
-  description = "Remote Docker host via SSH. Example: ssh://kva-vm@51.250.10.10:22" #
 }
 
 
