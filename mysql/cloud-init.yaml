@@ -1,0 +1,29 @@
+#cloud-config
+users:
+  - name: kva-vm
+    groups: sudo, docker
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGCxz6Ttx4jaiMvpdANwl4va+6RTIWd+Vd8ylDNu1xD vboxuser@KVA
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+
+runcmd:
+  - curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+  - sh /tmp/get-docker.sh
+  - usermod -aG docker kva-vm
+  - systemctl enable docker
+  - systemctl start docker
+  - rm /tmp/get-docker.sh
+ 
+
+
+ 
