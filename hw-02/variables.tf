@@ -42,3 +42,45 @@ variable "env" {
   default     = "dev"
   description = "Environment (dev, stage, prod)"
 }
+
+### vms_resources vars
+
+variable "vms_resources" {
+  type = map(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+  }))
+
+  default = {
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 5
+    }
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+    }
+  }
+
+  description = "Compute resources VM web and db"
+}
+
+
+### metadata var
+
+variable "metadata" {
+  type = object({
+    serial-port-enable = number
+    ssh-keys           = string
+  })
+
+  default = {
+    serial-port-enable = 1
+    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGCxz6Ttx4jaiMvpdANwl4va+6RTIWd+Vd8ylDNu1xD vboxuser@KVA"
+  }
+
+  description = "Common metadata for all VMs"
+}
