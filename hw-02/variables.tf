@@ -35,3 +35,10 @@ variable "vms_ssh_root_key" {
   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGCxz6Ttx4jaiMvpdANwl4va+6RTIWd+Vd8ylDNu1xD vboxuser@KVA"
   description = "ssh-keygen -t ed25519"
 }
+
+### env_var
+variable "env" {
+  type        = string
+  default     = "dev"
+  description = "Environment (dev, stage, prod)"
+}
