@@ -1,16 +1,18 @@
 ###cloud vars
-variable "token" {
-  type        = string
-  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
-}
+# variable "token" {
+#  type        = string
+#  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
+# }
 
 variable "cloud_id" {
   type        = string
+  default     = "b1g3g3a6ro9rr9hd0mvm"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
 }
 
 variable "folder_id" {
   type        = string
+  default     = "b1grsjmidldjs2rmkgd0"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
 
@@ -29,4 +31,39 @@ variable "vpc_name" {
   type        = string
   default     = "develop"
   description = "VPC network&subnet name"
+}
+
+variable "each_vm" {
+  type = list(object({
+    vm_name     = string
+    cpu         = number
+    ram         = number
+    disk_volume = number
+  }))
+  default = [
+    {
+      vm_name     = "main"
+      cpu         = 4
+      ram         = 4
+      disk_volume = 10
+    },
+    {
+      vm_name     = "replica"
+      cpu         = 2
+      ram         = 2
+      disk_volume = 8
+    }
+  ]
+}
+
+
+
+
+
+
+###ssh vars
+variable "vms_ssh_root_key" {
+  type        = string
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGCxz6Ttx4jaiMvpdANwl4va+6RTIWd+Vd8ylDNu1xD vboxuser@KVA"
+  description = "ssh-keygen -t ed25519"
 }
