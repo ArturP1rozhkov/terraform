@@ -1,16 +1,18 @@
 ###cloud vars
-variable "token" {
-  type        = string
-  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
-}
+# variable "token" {
+#  type        = string
+#  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
+# }
 
 variable "cloud_id" {
   type        = string
+  default     = "b1g3g3a6ro9rr9hd0mvm"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
 }
 
 variable "folder_id" {
   type        = string
+  default     = "b1grsjmidldjs2rmkgd0"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
 
@@ -31,20 +33,21 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
+
 ###common vars
 
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "your_ssh_ed25519_key"
-  description = "ssh-keygen -t ed25519"
-}
+# variable "vms_ssh_root_key" {
+#  type        = string
+#  default     = "your_ssh_ed25519_key"
+#  description = "ssh-keygen -t ed25519"
+# }
 
 ###example vm_web var
 variable "vm_web_name" {
   type        = string
   default     = "netology-develop-platform-web"
   description = "example vm_web_ prefix"
-}
+ }
 
 ###example vm_db var
 variable "vm_db_name" {
