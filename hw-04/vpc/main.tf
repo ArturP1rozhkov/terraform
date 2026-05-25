@@ -1,10 +1,12 @@
 resource "yandex_vpc_network" "this" {
-  name = var.network_name
+  name = var.network_name != null ? var.network_name : var.env_name
 }
 
 resource "yandex_vpc_subnet" "this" {
-  name           = "${var.env_name}-${var.zone}"
-  zone           = var.zone
+  for_each = { for s in var.subnets : s.zone => s }
+
+  name           = "${var.env_name}-${each.value.zone}"
+  zone           = each.value.zone
   network_id     = yandex_vpc_network.this.id
-  v4_cidr_blocks = var.v4_cidr_blocks
+  v4_cidr_blocks = [each.value.cidr]
 }

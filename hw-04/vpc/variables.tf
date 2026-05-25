@@ -1,19 +1,18 @@
 variable "env_name" {
-  type        = string
   description = "Environment name"
+  type        = string
 }
 
 variable "network_name" {
-  type        = string
   description = "VPC network name"
-}
-
-variable "zone" {
   type        = string
-  description = "Availability zone for subnet"
+  default     = null
 }
 
-variable "v4_cidr_blocks" {
-  type        = list(string)
-  description = "IPv4 CIDR blocks for subnet"
+variable "subnets" {
+  description = "List of subnets to create"
+  type = list(object({
+    zone = string
+    cidr = string
+  }))
 }
