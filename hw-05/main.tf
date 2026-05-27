@@ -42,7 +42,7 @@ module "marketing_vm" {
 
   labels = {
     owner   = "team-marketing"
-    project = "marketing"
+    project = "marketing!"
   }
 
   metadata = {
